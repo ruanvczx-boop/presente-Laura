@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Minha gatinha, Laura 💙💚</title>
+<style>
+:root{--blue:#dff2ff;--green:#dff7e9;--deep:#276b91;--mint:#36866d;--ink:#244b5c}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:linear-gradient(145deg,#eaf7ff,#eaf9ef);min-height:100vh}
+main{max-width:850px;margin:auto;padding:22px 16px 48px}.panel{background:#ffffffdf;border:1px solid #fff;border-radius:25px;padding:22px;box-shadow:0 12px 35px #326d7b18;margin:16px 0}
+h1,h2{text-align:center;margin:8px 0 12px}h1{font-size:clamp(28px,6vw,45px);color:var(--deep)}h2{color:var(--mint)}
+p{text-align:center;line-height:1.65}
+button{border:0;border-radius:999px;padding:13px 20px;background:linear-gradient(90deg,#70b9e5,#72c99c);color:white;font-weight:750;font-size:15px;cursor:pointer;box-shadow:0 5px 14px #4d9d9b33}
+button.secondary{background:#edf8f6;color:#347b75;box-shadow:none;border:1px solid #cdebe0}
+.center{text-align:center}.hero{font-size:42px;text-align:center;margin:4px}.art{width:100%;border-radius:18px;display:block;border:3px solid white}
+.small{font-size:13px;color:#72919b}.hidden{display:none!important}
+.people{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
+.person{padding:14px 8px;background:#f0f9ff;border:1px solid #d7ebf7;border-radius:16px;color:#28698a}
+.person span{display:block;font-size:12px;font-weight:500;color:#72919b;margin-top:4px}
+.question{font-weight:700;text-align:center;font-size:18px;margin:14px 0}
+.answers{display:grid;gap:9px}.answers button{width:100%;background:#eff8f8;color:#347b75;box-shadow:none;border:1px solid #d7ece6}
+#feedback{min-height:28px;text-align:center;color:#36866d;font-weight:700}
+#message{font-size:18px;min-height:65px}
+.signature{font-weight:800;color:#347b75;font-size:20px}
+footer{text-align:center;font-size:12px;color:#72919b;padding:12px}
+@media(min-width:600px){.people{grid-template-columns:repeat(4,1fr)}.panel{padding:28px}}
+</style></head>
+<body><main>
+<section class="panel center" id="welcome">
+<div class="hero">💙 💚 ✨</div><h1>Minha gatinha, Laura!</h1>
+<p>Os sete prepararam um cantinho especial para você. Tem mensagens, um desafio e uma surpresa esperando por ti.</p>
+<button onclick="show('characters')">Quero descobrir! 💌</button>
+<p class="small">Um presente feito com carinho, especialmente para você.</p>
+</section>
+<section class="panel hidden" id="characters">
+<h2>Uma mensagem de cada um 💙</h2><p>Toque nos personagens para descobrir o que cada um preparou.</p>
+<img class="art" src="personagens.jpg" alt="Ilustração dos sete personagens">
+<div class="people" id="people"></div><div class="center" style="margin-top:18px"><button onclick="show('quiz')">Continuar para o desafio ✨</button></div>
+</section>
+<section class="panel hidden" id="messageBox"><h2 id="messageTitle">Uma mensagem para você</h2><p id="message"></p><div class="center"><button class="secondary" onclick="show('characters')">Voltar aos personagens</button></div></section>
+<section class="panel hidden" id="quiz"><h2>Desafio ARMY! 💚</h2><p>Um mini quiz só para você, Laura!</p><div class="question" id="question"></div><div class="answers" id="answers"></div><p id="feedback"></p><div class="center"><button id="next" class="hidden" onclick="nextQuestion()">Próxima pergunta</button></div></section>
+<section class="panel hidden center" id="final"><div class="hero">🎂 💙 💚</div><h1>Feliz aniversário, Laura!</h1>
+<p>Que teu novo ciclo seja cheio de coisas lindas, alegrias, saúde e sonhos realizados. Você merece um dia incrível!</p>
+<div style="background:linear-gradient(135deg,#eff8ff,#effaf2);border-radius:20px;padding:18px;margin:18px 0">
+<p style="font-size:19px;font-weight:650">Minha gatinha, eu te amo muito, e tu é muito importante para mim. Eu te amo, nega. Aproveita teu dia, minha gostosa.</p>
+<p class="signature">ass, gzx</p></div>
+<button onclick="reveal()">Abrir a última surpresa 🎁</button><p id="last" class="hidden" style="font-size:21px;font-weight:800;color:#347b75">Borahae, Laura! 💜💙💚</p>
+</section><footer>Feito especialmente para Laura • BTS + 💙💚</footer></main>
+<script>
+const names=["RM","Jin","SUGA","j-hope","Jimin","V","Jungkook"];
+const messages=[
+"Laura, que seu novo ciclo venha cheio de coragem, conquistas e motivos para se orgulhar. Feliz aniversário! 💙",
+"Hoje é dia de sorrir muito, aproveitar cada momento e receber todo o carinho que você merece! 🎂",
+"Que a vida te surpreenda com coisas boas e que você nunca perca sua luz. 💚",
+"Que nunca faltem energia boa, música e motivos para dar aquela gargalhada! 🌟",
+"Você merece carinho em dobro hoje e sempre. Continue espalhando esse sorriso lindo! 💙",
+"Que seus sonhos encontrem caminhos para acontecer. Aproveite muito seu dia! ✨",
+"Feliz aniversário, Laura! Continue sendo essa pessoa única. Mandando um abraço enorme e muito amor! 💚"
+];
+const qs=[
+{q:"Quantos integrantes fazem parte do BTS?",a:["5","7","9"],c:1,why:"Isso mesmo! São sete integrantes. 💜"},
+{q:"Como os fãs costumam chamar o fandom do BTS?",a:["ARMY","MOA","BLINK"],c:0,why:"Acertou! O fandom é ARMY. 💜"},
+{q:"Qual destas palavras é muito associada ao carinho entre BTS e ARMY?",a:["Borahae","Annyeonghaseyo","Daebak"],c:0,why:"Borahae! Uma palavra cheia de carinho. 💜"}
+];
+let qi=0,answered=false;
+function show(id){["welcome","characters","messageBox","quiz","final"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==id))}
+const people=document.getElementById("people");
+names.forEach((n,i)=>{let b=document.createElement("button");b.className="person";b.innerHTML=n+'<span>Toque para abrir a mensagem</span>';b.onclick=()=>{document.getElementById("messageTitle").textContent="Uma mensagem de "+n+" 💙";document.getElementById("message").textContent=messages[i];show("messageBox")};people.appendChild(b)});
+function loadQ(){answered=false;document.getElementById("next").classList.add("hidden");document.getElementById("feedback").textContent="";document.getElementById("question").textContent=qs[qi].q;let a=document.getElementById("answers");a.innerHTML="";qs[qi].a.forEach((v,i)=>{let b=document.createElement("button");b.textContent=v;b.onclick=()=>answer(i);a.appendChild(b)})}
+function answer(i){if(answered)return;answered=true;document.getElementById("feedback").textContent=i===qs[qi].c?qs[qi].why:"Quase! A resposta certa é "+qs[qi].a[qs[qi].c]+". 💜";document.getElementById("next").classList.remove("hidden")}
+function nextQuestion(){qi++;if(qi>=qs.length)show("final");else loadQ()}
+function reveal(){document.getElementById("last").classList.remove("hidden")}
+loadQ();
+</script></body></html>
