@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071d2d">
+<title>Uma surpresa para você 💚</title>
+<style>
+:root{--bg:#061a29;--panel:#0d2b3c;--panel2:#12384a;--mint:#8de0c0;--blue:#7db9e8;--white:#f5fbff;--muted:#bfd1dc}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--white);background:radial-gradient(circle at 15% 10%,#17445a 0,transparent 34%),radial-gradient(circle at 90% 80%,#123f45 0,transparent 32%),var(--bg);padding:22px}
+main{max-width:760px;margin:0 auto}.screen{display:none;animation:up .45s ease}.screen.active{display:block}@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero{text-align:center;padding:42px 20px 24px}.eyebrow{color:var(--mint);letter-spacing:3px;text-transform:uppercase;font-size:.75rem;font-weight:700}
+h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.08;margin:12px 0;color:var(--white)}h2{font-size:clamp(1.5rem,5vw,2.2rem);margin:8px 0 12px}
+p{line-height:1.7;color:var(--muted);font-size:1.02rem}.card{background:linear-gradient(145deg,rgba(18,56,74,.96),rgba(9,35,50,.96));border:1px solid rgba(141,224,192,.2);border-radius:24px;padding:24px;margin:16px 0;box-shadow:0 16px 50px #0003}
+button{border:0;border-radius:14px;padding:14px 20px;background:linear-gradient(100deg,var(--mint),var(--blue));color:#06202c;font-weight:800;font-size:1rem;cursor:pointer;margin:7px 5px 0;min-height:48px}
+button.secondary{background:#173c50;color:var(--white);border:1px solid #47758b}
+button:disabled{opacity:.5;cursor:not-allowed}.center{text-align:center}.progress{height:7px;border-radius:9px;background:#183b4d;overflow:hidden;margin:15px 0 22px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--mint),var(--blue));transition:width .3s}
+.options{display:grid;gap:10px;margin-top:18px}.options button{margin:0;text-align:left;background:#15394b;color:var(--white);border:1px solid #31586b;font-weight:600}.options button:hover{border-color:var(--mint);background:#1a4656}
+.small{font-size:.86rem;color:#9fb9c8}.spark{font-size:2.5rem}.quote{font-size:1.15rem;color:var(--white);line-height:1.8}.heart{color:#91e5c5}.footer{text-align:center;margin:32px 0 10px;color:#7194a6;font-size:.8rem}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}.tile{background:#14394b;border:1px solid #31586b;border-radius:16px;padding:15px;text-align:left}.tile b{display:block;color:var(--mint);margin-bottom:5px}.tile span{color:var(--muted);font-size:.92rem;line-height:1.5}
+@media(min-width:560px){.tiles{grid-template-columns:repeat(3,1fr)}} 
+
+/* Atualização visual: clean, azul/verde e referência discreta ao Skyline */
+body{
+ background:
+ radial-gradient(ellipse at 50% 0%,rgba(39,104,139,.26),transparent 48%),
+ radial-gradient(circle at 90% 78%,rgba(35,111,92,.18),transparent 32%),
+ linear-gradient(160deg,#061725 0%,#092538 52%,#071e27 100%);
+}
+.card,.tile{backdrop-filter:blur(8px);box-shadow:0 12px 36px rgba(0,0,0,.18)}
+.tile{cursor:pointer;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.tile:hover{transform:translateY(-2px);border-color:rgba(125,185,232,.65);background:#174356}
+.hero .bts-photo{display:block;width:min(100%,430px);max-height:230px;object-fit:cover;margin:0 auto 24px;border-radius:20px;border:1px solid rgba(125,185,232,.34);box-shadow:0 14px 36px rgba(0,0,0,.28)}
+.hero .car-line{width:110px;height:2px;margin:18px auto;background:linear-gradient(90deg,transparent,var(--blue),var(--mint),transparent);opacity:.75}
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,12,20,.78);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+.modal-backdrop.open{display:flex}
+.modal{width:min(100%,520px);background:linear-gradient(145deg,#12384a,#0a2638);border:1px solid rgba(125,185,232,.35);border-radius:22px;padding:24px;box-shadow:0 24px 70px #0008}
+.modal h2{color:var(--white);margin-top:0}
+.modal p{white-space:pre-line}
+.modal .close{float:right;margin:0 0 12px 12px}
+.music-panel{margin-top:16px;padding:18px;border-radius:18px;background:rgba(8,29,43,.75);border:1px solid rgba(125,185,232,.25)}
+.music-panel a{color:#a8d7f7;font-weight:700}
+@media(max-width:420px){body{padding:14px}.hero{padding-top:28px}.hero .bts-photo{max-height:190px}}
+
+</style>
+</head>
+<body>
+<main>
+<section id="welcome" class="screen active">
+ <div class="hero"><div class="eyebrow">um cantinho feito com carinho</div><img class="bts-photo" src="bts-laura.jpg" alt="Foto do BTS escolhida para a abertura"><div class="car-line"></div><div class="spark">💚 ✨ 💙</div>
+ <h1>Laura, isso aqui é<br>pra você.</h1>
+ <p>Preparei uma pequena surpresa. Não é nada complicado: só quero que você se divirta, sorria e lembre do quanto é especial.</p>
+ <button onclick="show('characters')">Começar a surpresa</button></div>
+ <div class="footer">feito com carinho · zx</div>
+</section>
+
+<section id="characters" class="screen">
+ <div class="hero"><div class="eyebrow">parte 1 · mensagens</div><h2>Algumas palavrinhas pra você</h2><p>Toque nos cartões. Cada um guarda um lembrete.</p></div>
+ <div class="tiles">
+  <button type="button" class="tile" onclick="openCard(this)" data-title="🌷 Sobre você" data-message="Tu tens uma personalidade forte. Tu és muito brava, mas eu amo te irritar. É uma das minhas demonstrações de carinho."><b>🌷 Sobre você</b><span>Seu jeito tem uma beleza que não precisa de esforço pra aparecer.</span></button>
+  <button type="button" class="tile" onclick="openCard(this)" data-title="🎧 Sua música" data-message="Boy In Luv, do BTS."><b>🎧 Sua música</b><span>Que nunca faltem músicas que façam seu coração ficar leve.</span></button>
+  <button type="button" class="tile" onclick="openCard(this)" data-title="💙 Seu sorriso" data-message="Teu sorriso me encanta. Eu olho para ele e fico admirado, completamente perdido nele."><b>💙 Seu sorriso</b><span>Seu sorriso é uma daquelas coisas simples que conseguem melhorar um dia.</span></button>
+  <button type="button" class="tile" onclick="openCard(this)" data-title="🌿 Seu jeito" data-message="Tu és muito forte. Existe uma força dentro de ti que considero especial."><b>🌿 Seu jeito</b><span>Gosto de você sendo você, sem precisar mudar pra agradar ninguém.</span></button>
+  <button type="button" class="tile" onclick="openCard(this)" data-title="⭐ Seus sonhos" data-message=""><b>⭐ Seus sonhos</b><span>Que você conquiste cada coisa que deseja, no seu tempo e do seu jeito.</span></button>
+  <button type="button" class="tile" onclick="openCard(this)" data-title="🐾 Seu carinho" data-message="Eu admiro teu amor pelos felinos, cachorros e por todos os animais, e tua compaixão com os pequenos."><b>🐾 Seu carinho</b><span>O amor que você sente pelos bichinhos diz muito sobre o coração bonito que tem.</span></button>
+  <button type="button" class="tile" onclick="openCard(this)" data-title="🎬 Nossos momentos" data-message=""><b>🎬 Nossos momentos</b><span>Até uma conversa ou um filme à distância pode virar uma lembrança boa.</span></button>
+ </div>
+ <div class="center"><button onclick="startQuiz()">Ir para o quiz</button></div>
+</section>
+
+<section id="quiz" class="screen">
+ <div class="card">
+  <div class="eyebrow">parte 2 · quiz</div><h2>Quanto você sabe sobre essa surpresa?</h2>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="small" id="counter"></div>
+  <h2 id="question" style="font-size:1.35rem;margin-top:20px"></h2>
+  <div class="options" id="options"></div>
+  <p id="feedback" class="small"></p>
+ </div>
+</section>
+
+<section id="birthday" class="screen">
+ <div class="hero"><div class="spark">🎂 💚 🎁</div><div class="eyebrow">parte 3 · um recadinho</div><h1>Feliz vida, Laura!</h1></div>
+ <div class="card">
+  <p class="quote">Minha gatinha, eu te amo muito, e tu é muito importante para mim. Eu te amo, nega. Aproveita teu dia, minha gostosa. 💚</p>
+  <p>Que seu novo ciclo venha cheio de coisas boas, momentos leves, sonhos realizados e motivos sinceros pra sorrir. Você merece tudo isso e muito mais.</p>
+  <p class="small">E calma… ainda tem mais uma coisinha.</p>
+ </div>
+ <div class="center"><button onclick="show('ayasha')">Abrir a última surpresa</button></div>
+</section>
+
+<section id="ayasha" class="screen">
+ <div class="hero"><div class="spark">🐾 🌙 💚</div><div class="eyebrow">a última surpresa</div><h1>Um carinho que fica.</h1></div>
+ <div class="card">
+  <p class="quote">Tenho certeza de que a Ayasha estaria muito orgulhosa da mamãe dela. 💚</p>
+  <p>O amor que vocês viveram não desaparece. Ele continua nas lembranças, nos detalhes e em todo carinho que ela deixou em você. A Ayasha sempre vai ter um lugar especial na sua história e no seu coração.</p>
+  <p class="quote">Laura, eu, Gabriel, amo tanto você.</p>
+  <p>Você ainda vai ganhar seu presente, viu? E espero que ele consiga mostrar um pouquinho do carinho que tenho por você. Você me faz me apaixonar todos os dias, até nas coisas mais simples, sem nem perceber.</p>
+  <p>Obrigado por ser essa pessoa tão especial. Nunca esquece o quanto é importante pra mim.</p>
+  <p class="center quote"><span class="heart">Com amor,</span><br><b>gzx</b> 💙</p>
+ </div>
+ <div class="center"><button onclick="show('end')">Guardar esse momento</button></div>
+</section>
+
+<section id="end" class="screen">
+ <div class="hero"><div class="spark">💚✨💙</div><h1>Fim… por enquanto.</h1>
+ <p>Essa surpresa acaba aqui, mas meu carinho por você continua. Espero que tenha sorrido pelo menos um pouquinho.</p>
+ <p class="quote">Você é muito especial, Laura. ❤️</p>
+ <button onclick="show('welcome')">Ver tudo de novo</button></div>
+ <div class="footer">feito especialmente pra você · zx</div>
+</section>
+</main>
+
+<div id="cardModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)closeCard()">
+ <div class="modal"><button class="secondary close" onclick="closeCard()" aria-label="Fechar">Fechar</button><h2 id="modalTitle"></h2><p id="modalMessage" class="quote"></p><div id="spotifyArea"></div></div>
+</div>
+
+<script>
+
+function openCard(el){
+ const title=el.dataset.title||'';
+ const message=el.dataset.message||'';
+ document.getElementById('modalTitle').textContent=title;
+ document.getElementById('modalMessage').textContent=message;
+ const area=document.getElementById('spotifyArea');
+ area.innerHTML='';
+ if(title.includes('Sua música')){
+   area.innerHTML='<div class="music-panel"><p>Boy In Luv — BTS</p><a href="https://open.spotify.com/search/Boy%20In%20Luv%20BTS" target="_blank" rel="noopener">Abrir no Spotify</a></div>';
+ }
+ document.getElementById('cardModal').classList.add('open');
+}
+function closeCard(){document.getElementById('cardModal').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCard();});
+
+const questions=[
+ {q:"Qual grupo de K-pop faz parte dessa surpresa?",a:["BTS","BLACKPINK","TWICE"],c:0,why:"BTS, claro! 💜"},
+ {q:"Quais cores inspiraram o visual desse presente?",a:["Vermelho e preto","Azul e verde","Rosa e amarelo"],c:1,why:"Azul e verde, do jeitinho que você gosta."},
+ {q:"Qual integrante do BTS você gosta especialmente?",a:["Jimin","Jungkook","V"],c:1,why:"Jungkook! 🎤"},
+ {q:"O que deixa essa surpresa especial?",a:["Foi feita pensando em você","Tem um prêmio em dinheiro","É uma prova da escola"],c:0,why:"Cada parte foi pensada com carinho."},
+ {q:"Qual dessas coisas combina com você?",a:["Música e momentos simples","Ficar sem ouvir música","Não gostar de filmes"],c:0,why:"Música, filmes e momentos que viram lembranças."},
+ {q:"O que eu espero que você sinta ao abrir isso?",a:["Pressa pra terminar","Que é querida e importante","Que está fazendo uma tarefa"],c:1,why:"É exatamente isso: que você se sinta especial."},
+ {q:"Quem está por trás dessa surpresa?",a:["Um desconhecido","Gabriel","O próprio Jungkook"],c:1,why:"Gabriel, com muito carinho. 😅"},
+ {q:"E o que ainda está esperando por você?",a:["Uma bronca","Seu presente","Uma lição de matemática"],c:1,why:"Seu presente ainda vai chegar! 🎁"}
+];
+let current=0,score=0;
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function startQuiz(){current=0;score=0;show('quiz');renderQuestion();}
+function renderQuestion(){
+ const q=questions[current];document.getElementById('counter').textContent=`Pergunta ${current+1} de ${questions.length}`;
+ document.getElementById('bar').style.width=`${current/questions.length*100}%`;
+ document.getElementById('question').textContent=q.q;document.getElementById('feedback').textContent='';
+ const box=document.getElementById('options');box.innerHTML='';
+ q.a.forEach((answer,i)=>{const b=document.createElement('button');b.textContent=answer;b.onclick=()=>answerQuestion(i);box.appendChild(b);});
+}
+function answerQuestion(i){
+ const q=questions[current];const buttons=[...document.querySelectorAll('#options button')];buttons.forEach(b=>b.disabled=true);
+ const correct=i===q.c;if(correct)score++;
+ document.getElementById('feedback').textContent=(correct?'Acertou! ':'Quase! ')+q.why;
+ const next=document.createElement('button');next.textContent=current===questions.length-1?'Ver minha surpresa':'Próxima pergunta';next.onclick=()=>{current++;if(current<questions.length)renderQuestion();else{document.getElementById('bar').style.width='100%';show('birthday');}};document.getElementById('options').appendChild(next);
+}
+</script>
+</body>
+</html>
