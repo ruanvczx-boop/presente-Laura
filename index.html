@@ -41,6 +41,13 @@ body{
 .music-panel{margin-top:16px;padding:18px;border-radius:18px;background:rgba(8,29,43,.75);border:1px solid rgba(125,185,232,.25)}
 .music-panel a{color:#a8d7f7;font-weight:700}
 @media(max-width:420px){body{padding:14px}.hero{padding-top:28px}.hero .bts-photo{max-height:190px}}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}
+.gallery button{padding:0;margin:0;border:0;background:none;border-radius:18px;overflow:hidden;min-height:0}
+.gallery img{display:block;width:100%;height:180px;object-fit:cover;border-radius:18px;border:1px solid rgba(125,185,232,.28);transition:transform .25s ease}
+.gallery button:hover img{transform:scale(1.03)}
+.lightbox img{width:100%;max-height:78vh;object-fit:contain;border-radius:14px}
+.empty-note{font-size:.9rem;color:var(--muted);margin-top:10px}
+.skyline-note{font-size:.82rem;letter-spacing:1px;color:var(--blue);text-transform:uppercase;margin-top:8px}
 
 </style>
 </head>
@@ -61,9 +68,9 @@ body{
   <button type="button" class="tile" onclick="openCard(this)" data-title="🎧 Sua música" data-message="Boy In Luv, do BTS."><b>🎧 Sua música</b><span>Que nunca faltem músicas que façam seu coração ficar leve.</span></button>
   <button type="button" class="tile" onclick="openCard(this)" data-title="💙 Seu sorriso" data-message="Teu sorriso me encanta. Eu olho para ele e fico admirado, completamente perdido nele."><b>💙 Seu sorriso</b><span>Seu sorriso é uma daquelas coisas simples que conseguem melhorar um dia.</span></button>
   <button type="button" class="tile" onclick="openCard(this)" data-title="🌿 Seu jeito" data-message="Tu és muito forte. Existe uma força dentro de ti que considero especial."><b>🌿 Seu jeito</b><span>Gosto de você sendo você, sem precisar mudar pra agradar ninguém.</span></button>
-  <button type="button" class="tile" onclick="openCard(this)" data-title="⭐ Seus sonhos" data-message=""><b>⭐ Seus sonhos</b><span>Que você conquiste cada coisa que deseja, no seu tempo e do seu jeito.</span></button>
+  <div class="tile" aria-label="Cartão reservado para conteúdo futuro"><b>⭐ Seus sonhos</b><span>Este cartão está reservado para uma mensagem sua.</span><div class="empty-note">Sem conteúdo confirmado.</div></div>
   <button type="button" class="tile" onclick="openCard(this)" data-title="🐾 Seu carinho" data-message="Eu admiro teu amor pelos felinos, cachorros e por todos os animais, e tua compaixão com os pequenos."><b>🐾 Seu carinho</b><span>O amor que você sente pelos bichinhos diz muito sobre o coração bonito que tem.</span></button>
-  <button type="button" class="tile" onclick="openCard(this)" data-title="🎬 Nossos momentos" data-message=""><b>🎬 Nossos momentos</b><span>Até uma conversa ou um filme à distância pode virar uma lembrança boa.</span></button>
+  <div class="tile" aria-label="Cartão reservado para conteúdo futuro"><b>🎬 Nossos momentos</b><span>Este cartão está reservado para uma lembrança sua.</span><div class="empty-note">Sem conteúdo confirmado.</div></div>
  </div>
  <div class="center"><button onclick="startQuiz()">Ir para o quiz</button></div>
 </section>
@@ -90,12 +97,28 @@ body{
 </section>
 
 <section id="ayasha" class="screen">
- <div class="hero"><div class="spark">🐾 🌙 💚</div><div class="eyebrow">a última surpresa</div><h1>Um carinho que fica.</h1></div>
+ <div class="hero"><div class="spark">🐾 🌙 💚</div><div class="eyebrow">uma homenagem especial</div><h1>Ayasha.</h1></div>
  <div class="card">
   <p class="quote">Tenho certeza de que a Ayasha estaria muito orgulhosa da mamãe dela. 💚</p>
+  <p>Ela foi uma luz na sua vida. E, para mim, fica também a certeza de que teve a melhor mãe do mundo.</p>
+  <div class="gallery" aria-label="Galeria de fotos da Ayasha">
+   <button type="button" onclick="openImage('168354.jpg','Ayasha')"><img src="168354.jpg" alt="Ayasha"></button>
+   <button type="button" onclick="openImage('168355.jpg','Ayasha')"><img src="168355.jpg" alt="Ayasha"></button>
+   <button type="button" onclick="openImage('168333.jpg','Ayasha')"><img src="168333.jpg" alt="Ayasha"></button>
+   <button type="button" onclick="openImage('168332.jpg','Ayasha')"><img src="168332.jpg" alt="Ayasha"></button>
+  </div>
   <p>O amor que vocês viveram não desaparece. Ele continua nas lembranças, nos detalhes e em todo carinho que ela deixou em você. A Ayasha sempre vai ter um lugar especial na sua história e no seu coração.</p>
+  <p class="quote">E espero que um dia ela possa voltar para onde nunca deveria ter sido tirada.</p>
+ </div>
+ <div class="center"><button onclick="show('final')">Continuar</button></div>
+</section>
+
+<section id="final" class="screen">
+ <div class="hero"><div class="car-line"></div><div class="eyebrow">a última surpresa</div><h1>Minha Luz.</h1><p class="skyline-note">para você, que faz parte de tudo isso</p></div>
+ <div class="card">
   <p class="quote">Laura, eu, Gabriel, amo tanto você.</p>
   <p>Você ainda vai ganhar seu presente, viu? E espero que ele consiga mostrar um pouquinho do carinho que tenho por você. Você me faz me apaixonar todos os dias, até nas coisas mais simples, sem nem perceber.</p>
+  <p>Você é minha Luz. E floresceu na minha vida como os lírios.</p>
   <p>Obrigado por ser essa pessoa tão especial. Nunca esquece o quanto é importante pra mim.</p>
   <p class="center quote"><span class="heart">Com amor,</span><br><b>gzx</b> 💙</p>
  </div>
@@ -115,7 +138,24 @@ body{
  <div class="modal"><button class="secondary close" onclick="closeCard()" aria-label="Fechar">Fechar</button><h2 id="modalTitle"></h2><p id="modalMessage" class="quote"></p><div id="spotifyArea"></div></div>
 </div>
 
+<div id="imageModal" class="modal-backdrop lightbox" role="dialog" aria-modal="true" onclick="if(event.target===this)closeImage()">
+  <div class="modal">
+    <button class="secondary close" onclick="closeImage()" aria-label="Fechar imagem">Fechar</button>
+    <img id="lightboxImage" src="" alt="">
+  </div>
+</div>
+
 <script>
+function openImage(src, alt){
+  const img = document.getElementById('lightboxImage');
+  img.src = src;
+  img.alt = alt || '';
+  document.getElementById('imageModal').classList.add('open');
+}
+function closeImage(){
+  document.getElementById('imageModal').classList.remove('open');
+}
+
 
 function openCard(el){
  const title=el.dataset.title||'';
@@ -125,21 +165,21 @@ function openCard(el){
  const area=document.getElementById('spotifyArea');
  area.innerHTML='';
  if(title.includes('Sua música')){
-   area.innerHTML='<div class="music-panel"><p>Boy In Luv — BTS</p><a href="https://open.spotify.com/search/Boy%20In%20Luv%20BTS" target="_blank" rel="noopener">Abrir no Spotify</a></div>';
+   area.innerHTML='<div class="music-panel"><p><b>Boy In Luv</b> — BTS</p><iframe style="border-radius:12px;width:100%;height:152px;border:0" src="https://open.spotify.com/embed/search/Boy%20In%20Luv%20BTS" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify - Boy In Luv BTS"></iframe></div>';
  }
  document.getElementById('cardModal').classList.add('open');
 }
 function closeCard(){document.getElementById('cardModal').classList.remove('open');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCard();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCard();closeImage();}});
 
 const questions=[
  {q:"Qual grupo de K-pop faz parte dessa surpresa?",a:["BTS","BLACKPINK","TWICE"],c:0,why:"BTS, claro! 💜"},
  {q:"Quais cores inspiraram o visual desse presente?",a:["Vermelho e preto","Azul e verde","Rosa e amarelo"],c:1,why:"Azul e verde, do jeitinho que você gosta."},
- {q:"Qual integrante do BTS você gosta especialmente?",a:["Jimin","Jungkook","V"],c:1,why:"Jungkook! 🎤"},
+ {q:"Qual é a música do BTS mencionada nesta surpresa?",a:["Boy In Luv","Dynamite","Butter"],c:0,why:"Boy In Luv. 🎧"},
  {q:"O que deixa essa surpresa especial?",a:["Foi feita pensando em você","Tem um prêmio em dinheiro","É uma prova da escola"],c:0,why:"Cada parte foi pensada com carinho."},
  {q:"Qual dessas coisas combina com você?",a:["Música e momentos simples","Ficar sem ouvir música","Não gostar de filmes"],c:0,why:"Música, filmes e momentos que viram lembranças."},
  {q:"O que eu espero que você sinta ao abrir isso?",a:["Pressa pra terminar","Que é querida e importante","Que está fazendo uma tarefa"],c:1,why:"É exatamente isso: que você se sinta especial."},
- {q:"Quem está por trás dessa surpresa?",a:["Um desconhecido","Gabriel","O próprio Jungkook"],c:1,why:"Gabriel, com muito carinho. 😅"},
+ {q:"Quem está por trás dessa surpresa?",a:["Um desconhecido","Gabriel","O próprio Jungkook"],c:1,why:"Gabriel, com muito carinho."},
  {q:"E o que ainda está esperando por você?",a:["Uma bronca","Seu presente","Uma lição de matemática"],c:1,why:"Seu presente ainda vai chegar! 🎁"}
 ];
 let current=0,score=0;
