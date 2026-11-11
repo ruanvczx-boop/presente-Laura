@@ -1,0 +1,10 @@
+PRESENTE PARA LAURA
+
+1. Extraia este ZIP.
+2. Entre no repositório GitHub: ruanvczx-boop/presente-Laura
+3. Envie o arquivo index.html para a raiz do repositório, substituindo o antigo.
+4. Faça Commit changes.
+5. Aguarde alguns instantes e abra:
+https://ruanvczx-boop.github.io/presente-Laura/
+
+O site é independente e funciona em celular. Não precisa enviar o ZIP para o GitHub: envie o index.html extraído.
